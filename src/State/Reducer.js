@@ -15,12 +15,11 @@ export const initialGamePlay = {
 const reducerGamePlay = (state, action) => {
   const {type, payload} = action;
   const currentGamer = state.isXNext ? 'X' : 'O';
-  const moveList = [];
   let board = [];
   let winLine = [];
 
   switch (type) {
-    case "SETTING":
+    case 'SETTING':
       return {
         ...state,
         isSetting: true,
@@ -28,12 +27,13 @@ const reducerGamePlay = (state, action) => {
         isWin: false,
         isDraw: false,
         board,
-        moveList
+        moveList: []
       }
-    case "DONE SETTING":
+    case 'DONE SETTING':
       const {width, height} = payload;
-      for (let i = 0; i < height; i++)
-        board.push(Array(width).fill(null));
+      for (let i = 0; i < height; i++) {
+        board.push(Array(Number(width)).fill(null));
+      }
       return {
         isSetting: false,
         width,
@@ -42,18 +42,19 @@ const reducerGamePlay = (state, action) => {
         isWin: false,
         isDraw: false,
         board,
-        moveList,
+        moveList: [],
         winLine
       }
-    case "CLICK BOARD":
+    case 'CLICK BOARD':
       const {x, y} = payload;
       board = [...state.board];
       board[x][y] = currentGamer;
-      moveList.push(`${currentGamer} move to [${x}, ${y}]`)
-
+      let moveList = [...state.moveList];
+      moveList.unshift(`${currentGamer} move to [${x}, ${y}]`);
+      
       /** Check win */
       winLine = checkWin(currentGamer, board, x, y, state.width, state.height);
-      if (winLine !== []) 
+      if (winLine.length !== 0) 
         return {
           ...state, 
           isWin: true,
@@ -63,7 +64,7 @@ const reducerGamePlay = (state, action) => {
         } 
 
       /** Check draw */
-      if (checkDraw(board)) 
+      if (checkDraw(board, state.width, state.height)) 
         return {
           ...state, 
           board, 
@@ -77,7 +78,7 @@ const reducerGamePlay = (state, action) => {
         moveList,
         isXNext: !state.isXNext
       } 
-    case "PLAY AGAIN":
+    case 'PLAY AGAIN':
       return {
         ...state,
         isSetting: false,
@@ -85,7 +86,7 @@ const reducerGamePlay = (state, action) => {
         isWin: false,
         isDraw: false,
         board,
-        moveList
+        moveList: []
       }
     default:
       return state;

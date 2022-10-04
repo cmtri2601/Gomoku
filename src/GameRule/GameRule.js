@@ -1,9 +1,9 @@
-export const checkDraw = (board) => {
-  return board.reduce(
-    (prev, cur) => 
-      prev && cur.findIndex(null) === -1 ? true : false,
-    true
-  );
+export const checkDraw = (board, width, height) => {
+  for(let x = 0; x < height; x++)
+    for(let y = 0; y < width; y++) 
+      if (board[x][y] === null) 
+        return false;
+  return true;
 }
 
 export const checkWin = (currentGamer, board, x, y, width, height) => {
@@ -36,11 +36,11 @@ const checkHorizontal = (currentGamer, board, x, y, width) => {
     }
 
     if (continuity === 5) {
-      return [{x, leftYWin}, 
-        {x, leftYWin: leftYWin + 1},
-        {x, leftYWin: leftYWin + 2},
-        {x, leftYWin: leftYWin + 3},
-        {x, leftYWin: leftYWin + 4}
+      return [{x, y: leftYWin}, 
+        {x, y: leftYWin + 1},
+        {x, y: leftYWin + 2},
+        {x, y: leftYWin + 3},
+        {x, y: leftYWin + 4}
       ];
     }
   }
@@ -63,11 +63,11 @@ const checkVertical = (currentGamer, board, x, y, height) => {
     }
 
     if (continuity === 5) {
-      return [{topXWin, y}, 
-        {topXWin: topXWin + 1, y},
-        {topXWin: topXWin + 2, y},
-        {topXWin: topXWin + 3, y},
-        {topXWin: topXWin + 4, y}
+      return [{x: topXWin, y}, 
+        {x: topXWin + 2, y},
+        {x: topXWin + 3, y},
+        {x: topXWin + 1, y},
+        {x: topXWin + 4, y}
       ];
     }
   }
