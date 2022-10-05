@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import './SettingGame.css'
 
 const SettingGame = props => {
-  const {width, height, isWin, isDraw, isXNext, isSetting,handleSetting} = props
+  const {width, height, isWin, isDraw, isXNext, isSetting, handleSetting} = props
 
   const widthRef = useRef(null);
   const heightRef = useRef(null);
@@ -60,8 +60,8 @@ const SettingGame = props => {
       <button disabled={!isSetting} type='submit'>OK</button>
       <button type='button' onClick={() => handleEnableSetting()}>Setting</button>
 
-      <p>{`Next is ${isXNext ? 'X' : 'O'}`}</p>
-      <h3 className={isWin ? '' : 'hidden'}>{`${isXNext ? 'O' : 'X'} Win`}</h3>
+      <p className={isSetting || isDraw || isWin ? 'hidden' : ''}>{`Next is ${isXNext ? 'X' : 'O'}`}</p>
+      <h3 className={isWin ? '' : 'hidden'}>{`${isXNext ? 'X' : 'O'} Win`}</h3>
       <h3 className={isDraw ? '' : 'hidden'}>Draw</h3>
 
       <button 
