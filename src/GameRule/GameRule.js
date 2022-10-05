@@ -119,10 +119,10 @@ const checkDiagonal = (currentGamer, board, x, y, width, height) => {
 
     if (continuity === 5) {
       return [{x: x + anchor, y: y - anchor}, 
-        {x: x + anchor + 1, y: y - anchor + 1},
-        {x: x + anchor + 2, y: y - anchor + 2},
-        {x: x + anchor + 3, y: y - anchor + 3},
-        {x: x + anchor + 4, y: y - anchor + 4}
+        {x: x + anchor + 1, y: y - anchor - 1},
+        {x: x + anchor + 2, y: y - anchor - 2},
+        {x: x + anchor + 3, y: y - anchor - 3},
+        {x: x + anchor + 4, y: y - anchor - 4}
       ];
     }
   }
