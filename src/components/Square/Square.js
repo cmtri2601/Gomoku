@@ -16,9 +16,9 @@ const Square = props => {
     <div
       className={isBelongWinLine ? 'square win' : 'square'}
       onClick={() => {
-        if (isWin || isDraw)
+        if (isWin || isDraw || value)
           return;
-        handleClickBoard({type:'CLICK BOARD', payload: {x, y}})
+        handleClickBoard({type:'CLICK BOARD', payload: {x, y}});
       }}
     >
       {value}

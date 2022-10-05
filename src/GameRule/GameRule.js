@@ -88,6 +88,7 @@ const checkDiagonal = (currentGamer, board, x, y, width, height) => {
   let topleft = x - top < y - left ? x - top : y- left;
   let bottomright = bottom - x < right - y ? bottom - x : right - y;
   anchor = -topleft;
+  continuity = 0;
   for (let i = -topleft; i <= bottomright; i++) {
     if (board[x + i][y + i] === currentGamer) 
       continuity++;
@@ -109,6 +110,7 @@ const checkDiagonal = (currentGamer, board, x, y, width, height) => {
   let topright = x - top < right - y ? x - top : right - y;
   let bottomleft = bottom - x < y - left ? bottom - x : y - left;
   anchor = -topright;
+  continuity = 0;
   for (let i = -topright; i <= bottomleft; i++) {
     if (board[x + i][y - i] === currentGamer) 
       continuity++;
@@ -126,6 +128,7 @@ const checkDiagonal = (currentGamer, board, x, y, width, height) => {
       ];
     }
   }
+  
   return [];
 }
 

@@ -1,7 +1,8 @@
 import React, { useRef } from 'react'
+import './SettingGame.css'
 
 const SettingGame = props => {
-  const {width, height, handleSetting} = props
+  const {width, height, isWin, isDraw, isXNext, isSetting,handleSetting} = props
 
   const widthRef = useRef(null);
   const heightRef = useRef(null);
@@ -22,12 +23,17 @@ const SettingGame = props => {
     handleSetting({type: "SETTING"});
   }
 
+  const handlePlayAgain = () => {
+    handleSetting({type: "PLAY AGAIN"});
+  }
+
   return (
     <form onSubmit={e => handleOK(e)}>
-      <h1>Setting</h1>
+      <h2>Setting</h2>
 
       <label htmlFor='width'>Width: </label>
       <input 
+        disabled={!isSetting}
         ref={widthRef}
         type={"number"} 
         defaultValue={width}
@@ -40,6 +46,7 @@ const SettingGame = props => {
 
       <label htmlFor='height'>Height: </label>
       <input 
+        disabled={!isSetting}
         ref={heightRef}
         type='number' 
         defaultValue={height}
@@ -50,8 +57,20 @@ const SettingGame = props => {
 
       <br/>
 
-      <button type='submit'>OK</button>
+      <button disabled={!isSetting} type='submit'>OK</button>
       <button type='button' onClick={() => handleEnableSetting()}>Setting</button>
+
+      <p>{`Next is ${isXNext ? 'X' : 'O'}`}</p>
+      <h3 className={isWin ? '' : 'hidden'}>{`${isXNext ? 'O' : 'X'} Win`}</h3>
+      <h3 className={isDraw ? '' : 'hidden'}>Draw</h3>
+
+      <button 
+        className={isWin || isDraw ? '' : 'hidden'} 
+        type='button' onClick={() => handlePlayAgain()}
+      >
+        Play again
+      </button>
+
     </form>
   )
 }

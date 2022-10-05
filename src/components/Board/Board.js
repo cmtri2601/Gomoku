@@ -39,9 +39,12 @@ const Board = props => {
       )
 
   return (
-    <div style={boardStyle}>
-      {listSquare}
-    </div>
+    <>
+      <h1>Gomoku</h1>
+      <div style={boardStyle}>
+        {listSquare}
+      </div>
+    </>
   )
 }
 

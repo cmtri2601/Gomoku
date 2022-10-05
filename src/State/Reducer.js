@@ -50,7 +50,7 @@ const reducerGamePlay = (state, action) => {
       board = [...state.board];
       board[x][y] = currentGamer;
       let moveList = [...state.moveList];
-      moveList.unshift(`${currentGamer} move to [${x}, ${y}]`);
+      moveList.unshift(`${currentGamer} move to [${x + 1}, ${y + 1}]`);
       
       /** Check win */
       winLine = checkWin(currentGamer, board, x, y, state.width, state.height);
@@ -79,6 +79,9 @@ const reducerGamePlay = (state, action) => {
         isXNext: !state.isXNext
       } 
     case 'PLAY AGAIN':
+      for (let i = 0; i < state.height; i++) {
+        board.push(Array(Number(state.width)).fill(null));
+      }
       return {
         ...state,
         isSetting: false,
@@ -86,6 +89,7 @@ const reducerGamePlay = (state, action) => {
         isWin: false,
         isDraw: false,
         board,
+        winLine,
         moveList: []
       }
     default:
