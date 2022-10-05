@@ -6,6 +6,21 @@
   list-style: none;
 }
 
+h2 {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  margin: 5px;
+  padding: 3px;
+}
+
+input {
+  text-align: center;
+  width: 4rem
+}
+
 body {
   margin: 0;
   padding: 0;

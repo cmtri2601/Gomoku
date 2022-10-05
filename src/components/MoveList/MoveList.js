@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import './MoveList.css'
 
 const MoveList = ({list}) => {
   const [isAscending, setIsAscending] = useState(true)
@@ -9,7 +10,7 @@ const MoveList = ({list}) => {
       return <li key={move}>{move}</li>
   })
   return (
-    <div>
+    <div className='move-list'>
       <h2>Move list</h2>
       <button onClick={() => setIsAscending(!isAscending)}>
         {isAscending ? 'Descending' : 'Ascending'}

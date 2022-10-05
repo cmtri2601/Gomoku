@@ -39,12 +39,12 @@ const Board = props => {
       )
 
   return (
-    <>
+    <div className='board'>
       <h1>Gomoku</h1>
       <div style={boardStyle}>
         {listSquare}
       </div>
-    </>
+    </div>
   )
 }
 

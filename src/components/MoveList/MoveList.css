@@ -1,0 +1,9 @@
+.move-list {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border: 2px solid black;
+    border-radius: 1rem;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+

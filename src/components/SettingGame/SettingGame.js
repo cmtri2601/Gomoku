@@ -28,10 +28,10 @@ const SettingGame = props => {
   }
 
   return (
-    <form onSubmit={e => handleOK(e)}>
+    <form onSubmit={e => handleOK(e)} className='setting'>
       <h2>Setting</h2>
 
-      <label htmlFor='width'>Width: </label>
+      <label htmlFor='width'>Width:&nbsp; </label>
       <input 
         disabled={!isSetting}
         ref={widthRef}
@@ -60,9 +60,10 @@ const SettingGame = props => {
       <button disabled={!isSetting} type='submit'>OK</button>
       <button type='button' onClick={() => handleEnableSetting()}>Setting</button>
 
+      <p className={isSetting ? '' : 'hidden'}>Click OK to start the game</p>
       <p className={isSetting || isDraw || isWin ? 'hidden' : ''}>{`Next is ${isXNext ? 'X' : 'O'}`}</p>
-      <h3 className={isWin ? '' : 'hidden'}>{`${isXNext ? 'X' : 'O'} Win`}</h3>
-      <h3 className={isDraw ? '' : 'hidden'}>Draw</h3>
+      <h3 className={isWin ? 'winner' : 'hidden'}>{`${isXNext ? 'X' : 'O'} Win`}</h3>
+      <h3 className={isDraw ? 'draw' : 'hidden'}>Draw</h3>
 
       <button 
         className={isWin || isDraw ? '' : 'hidden'} 
